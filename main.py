@@ -1,2 +1,2 @@
-print("Docker działa!")
+print("Docker dziala!")
 import requests
