@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 from data_collection import *
+import numpy as np
+from scipy.stats import norm,iqr
+from scipy import stats
 
 if __name__ == "__main__":
     #============GOLD=====================
@@ -57,3 +60,45 @@ if __name__ == "__main__":
     corr_df=df.corr()
     print("correlation matrix for oil,gold,usd")
     print(corr_df["Open_gold"])
+
+    #percentage change
+    print("percentage change- periad=1day")
+    gold["pct_change_1day"]=gold["Open"].pct_change()
+    print(gold.tail())
+
+    #histogram pct_change
+    mean=np.mean(gold["pct_change_1day"])
+    sd=np.std(gold["pct_change_1day"])
+    x=np.linspace(gold["pct_change_1day"].min(), gold["pct_change_1day"].max(), 100)
+    print(f"mean={mean}, sd={sd}")
+    plt.hist(gold["pct_change_1day"], bins=50,density=True,)
+    plt.plot(x,norm.pdf(x,mean,sd),linewidth=2)
+    plt.show()
+
+    shapiro=stats.shapiro(gold["pct_change_1day"].dropna())
+    #print(shapiro.pvalue)
+    if shapiro.pvalue <=0.05:
+        print(f"not normal distribution, p-value={shapiro}")
+    else:
+        print(f"normal distribution, p-value={shapiro}")
+
+    #Shapiro-Wilk test said that the pct_change of gold price hasn't got normal distribution, what is really
+    # normal in economical field. Max value is near 0, so a lot of values hasn't got big changes
+    # , distribution looks similar to normal distribution,but it has fatter tails
+
+    IQR=iqr(gold["pct_change_1day"].dropna())
+    print(f"IQR={IQR}")
+    #it says that 50% of the values are in 1.15% breadth. Values outside this range are possible outliers
+
+
+    #============Lags==================
+
+    gold["lag_1_pct"]=gold["pct_change_1day"].shift(1)
+    print("values with lag")
+    print(gold.tail())
+
+    corr_lag = gold[["lag_1_pct", "pct_change_1day"]].dropna().corr()
+    print(corr_lag)
+
+    #pct_change changes dont depends on past values
+

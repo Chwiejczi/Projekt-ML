@@ -35,26 +35,26 @@ def merge_df(dframes):
 if __name__ == "__main__":
 
     gold=data_prep("GC=F","5y")
-    print(gold.tail())
+    #print(gold.tail())
     missingValues_gold = check_missing_values(gold)
-    print(missingValues_gold)
-
+    #print(missingValues_gold)
+#
     oil=data_prep("CL=F","5y")
-    print(oil.tail())
+    #print(oil.tail())
     missingValues_oil = check_missing_values(oil)
-    print(missingValues_oil)
-
+    #print(missingValues_oil)
+#
     usd = data_prep("USDEUR=X", "5y")
-    print(usd.tail())
-
+    #print(usd.tail())
+#
     usd=columns_to_delete(usd,"Volume")
-    print(usd.tail())
+    #print(usd.tail())
     missingValues_usd = check_missing_values(usd)
-    print(missingValues_usd)
-
-
-
-    #merge_df
+    #print(missingValues_usd)
+#
+#
+#
+    ##merge_df
     df1=gold[["Date", "Open"]]
     df1=df1.set_index("Date")
     df1.rename(columns={"Open": "Open_gold"}, inplace=True)
@@ -64,11 +64,11 @@ if __name__ == "__main__":
     df3=usd[["Date", "Open"]]
     df3 = df3.set_index("Date")
     df3.rename(columns={"Open": "Open_usd"}, inplace=True)
-
+#
     df=merge_df([df1,df2,df3])
     df=df.reset_index()
-    print("dataframe merged")
-    print(df)
+    #print("dataframe merged")
+    #print(df)
 
 
 
