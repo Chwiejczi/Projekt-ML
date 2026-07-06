@@ -3,6 +3,8 @@ from data_collection import *
 import numpy as np
 from scipy.stats import norm,iqr
 from scipy import stats
+from statsmodels.tsa.stattools import adfuller
+import datetime as dt
 
 if __name__ == "__main__":
     #============GOLD=====================
@@ -66,6 +68,9 @@ if __name__ == "__main__":
     gold["pct_change_1day"]=gold["Open"].pct_change()
     print(gold.tail())
 
+    oil["pct_change_1day"] = oil["Open"].pct_change()
+    usd["pct_change_1day"] = usd["Open"].pct_change()
+
     #histogram pct_change
     mean=np.mean(gold["pct_change_1day"])
     sd=np.std(gold["pct_change_1day"])
@@ -97,8 +102,40 @@ if __name__ == "__main__":
     print("values with lag")
     print(gold.tail())
 
+    oil["lag_1_pct"] = oil["pct_change_1day"].shift(1)
+    usd["lag_1_pct"] = usd["pct_change_1day"].shift(1)
+
     corr_lag = gold[["lag_1_pct", "pct_change_1day"]].dropna().corr()
     print(corr_lag)
 
     #pct_change changes dont depends on past values
+
+    #========whether time series is stationary===========
+    stationary=adfuller(gold["Open"])
+    #print(stationary[1])
+    if stationary[1] <=0.05:
+        print(f"stationary, p-value={stationary[1]}")
+    else:
+        print(f"not stationary, p-value={stationary[1]}")
+
+    gold["MA"]=gold["Open"].rolling(window=20).mean()
+
+
+    #print(gold.columns)
+
+    #============seasonal data- days of the week
+    df["day_of_week"]=df["Date"].dt.dayofweek
+
+    #============final df=====================
+    df["Gold_MA"]=gold["MA"]
+    df["Gold_Close"]=gold["Close"]
+    df["Gold_pct_change_1day"]=gold["pct_change_1day"]
+    df["gold_lag_1_pct"]=gold["lag_1_pct"]
+    df["Gold_High"]=gold["High"]
+    df["Gold_Low"]=gold["Low"]
+    df["oil_lag_1_pct"] = oil["lag_1_pct"]
+    df["usd_lag_1_pct"] = usd["lag_1_pct"]
+    df["Target"]=gold["Close"].shift(-1)
+    df=df.dropna()
+    print(df.columns)
 

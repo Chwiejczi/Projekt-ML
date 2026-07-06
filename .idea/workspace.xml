@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5c34b8b3-a2bf-47ac-8ff0-19f166f9a783" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exploratory_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/exploratory_data_analysis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +21,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
