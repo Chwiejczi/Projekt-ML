@@ -123,19 +123,6 @@ if __name__ == "__main__":
 
     #print(gold.columns)
 
-    #============seasonal data- days of the week
-    df["day_of_week"]=df["Date"].dt.dayofweek
 
-    #============final df=====================
-    df["Gold_MA"]=gold["MA"]
-    df["Gold_Close"]=gold["Close"]
-    df["Gold_pct_change_1day"]=gold["pct_change_1day"]
-    df["gold_lag_1_pct"]=gold["lag_1_pct"]
-    df["Gold_High"]=gold["High"]
-    df["Gold_Low"]=gold["Low"]
-    df["oil_lag_1_pct"] = oil["lag_1_pct"]
-    df["usd_lag_1_pct"] = usd["lag_1_pct"]
-    df["Target"]=gold["Close"].shift(-1)
-    df=df.dropna()
-    print(df.columns)
+
 
