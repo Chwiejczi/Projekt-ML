@@ -15,9 +15,9 @@ def prepare_main_df():
 
     gold["MA"] = gold["Close_gold"].rolling(window=20).mean()
 
-    gold["pct_change_1day_gold"]=gold["Open"].pct_change()
-    oil["pct_change_1day_oil"] = oil["Open"].pct_change()
-    usd["pct_change_1day_usd"] = usd["Open"].pct_change()
+    gold["pct_change_1day_gold"]=gold["Close_gold"].pct_change()
+    oil["pct_change_1day_oil"] = oil["Close_oil"].pct_change()
+    usd["pct_change_1day_usd"] = usd["Close_usd"].pct_change()
 
     gold["lag_1_pct_gold"]=gold["pct_change_1day_gold"].shift(1)
     oil["lag_1_pct_oil"] = oil["pct_change_1day_oil"].shift(1)

@@ -4,14 +4,14 @@ import numpy as np
 from scipy.stats import norm,iqr
 from scipy import stats
 from statsmodels.tsa.stattools import adfuller
-import datetime as dt
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 
 if __name__ == "__main__":
     #============GOLD=====================
     gold=data_prep("GC=F","5y")
     fig,(ax1,ax2,ax3)=plt.subplots(3,1)
-    ax1.plot(gold["Date"],gold["Open"])
-    ax1.set(xlabel='time',ylabel='Open values for gold')
+    ax1.plot(gold["Date"],gold["Close"])
+    ax1.set(xlabel='time',ylabel='Close values for gold')
     ax1.grid(True)
     corr=gold.corr()
     print(corr["Volume"])
@@ -21,8 +21,8 @@ if __name__ == "__main__":
     # ============OIL======================
     oil=data_prep("CL=F","5y")
     #fig2,ax2=plt.subplots()
-    ax2.plot(oil["Date"],oil["Open"])
-    ax2.set(xlabel='time',ylabel='Open values for oil')
+    ax2.plot(oil["Date"],oil["Close"])
+    ax2.set(xlabel='time',ylabel='Close values for oil')
     ax2.grid(True)
     corr=oil.corr()
     print(corr["Volume"])
@@ -30,8 +30,8 @@ if __name__ == "__main__":
 
     # ============USD=====================
     usd=data_prep("USDEUR=X","5y")
-    ax3.plot(usd["Date"],usd["Open"])
-    ax3.set(xlabel='time',ylabel='Open values for usd')
+    ax3.plot(usd["Date"],usd["Close"])
+    ax3.set(xlabel='time',ylabel='Close values for usd')
     ax3.grid(True)
     usd = columns_to_delete(usd, "Volume")
     corr=usd.corr()
@@ -42,17 +42,17 @@ if __name__ == "__main__":
 
     #correlation between gold,usd,oil
 
-    df1 = gold[["Date", "Open"]]
+    df1 = gold[["Date", "Close"]]
     df1 = df1.set_index("Date")
-    df1.rename(columns={"Open": "Open_gold"}, inplace=True)
+    df1.rename(columns={"Close": "Close_gold"}, inplace=True)
 
-    df2 = oil[["Date", "Open"]]
+    df2 = oil[["Date", "Close"]]
     df2 = df2.set_index("Date")
-    df2.rename(columns={"Open": "Open_oil"}, inplace=True)
+    df2.rename(columns={"Close": "Close_oil"}, inplace=True)
 
-    df3 = usd[["Date", "Open"]]
+    df3 = usd[["Date", "Close"]]
     df3 = df3.set_index("Date")
-    df3.rename(columns={"Open": "Open_usd"}, inplace=True)
+    df3.rename(columns={"Close": "Close_usd"}, inplace=True)
 
     df = merge_df([df1, df2, df3])
     df = df.reset_index()
@@ -61,15 +61,15 @@ if __name__ == "__main__":
 
     corr_df=df.corr()
     print("correlation matrix for oil,gold,usd")
-    print(corr_df["Open_gold"])
+    print(corr_df["Close_gold"])
 
     #percentage change
     print("percentage change- periad=1day")
-    gold["pct_change_1day"]=gold["Open"].pct_change()
+    gold["pct_change_1day"]=gold["Close"].pct_change()
     print(gold.tail())
 
-    oil["pct_change_1day"] = oil["Open"].pct_change()
-    usd["pct_change_1day"] = usd["Open"].pct_change()
+    oil["pct_change_1day"] = oil["Close"].pct_change()
+    usd["pct_change_1day"] = usd["Close"].pct_change()
 
     #histogram pct_change
     mean=np.mean(gold["pct_change_1day"])
@@ -111,17 +111,41 @@ if __name__ == "__main__":
     #pct_change changes dont depends on past values
 
     #========whether time series is stationary===========
-    stationary=adfuller(gold["Open"])
+    stationary=adfuller(gold["Close"])
     #print(stationary[1])
     if stationary[1] <=0.05:
         print(f"stationary, p-value={stationary[1]}")
     else:
         print(f"not stationary, p-value={stationary[1]}")
 
-    gold["MA"]=gold["Open"].rolling(window=20).mean()
+    gold["MA"]=gold["Close"].rolling(window=20).mean()
 
 
-    #print(gold.columns)
+    #we make it stationary
+    gold_diff=gold.copy()
+    gold_diff["Close_diff"]=gold["Close"].diff()
+    gold_diff=gold_diff.dropna()
+    stationary_after_diff=adfuller(gold_diff["Close_diff"])
+    print("\n\ncheck if time series is stationary after differential:")
+    if stationary_after_diff[1] <=0.05:
+        print(f"stationary, p-value={stationary_after_diff[1]}")
+    else:
+        print(f"not stationary, p-value={stationary_after_diff[1]}")
+
+    fig, ax = plt.subplots()
+    ax.plot(gold_diff["Date"], gold_diff["Close_diff"])
+    ax.set(xlabel='time', ylabel='Close values for gold after differential')
+    ax.grid(True)
+    plt.show()
+
+    #print(gold_diff)
+    #we need to choose right nuber of p,q according to pacf and acf
+    fig, (ax1,ax2)=plt.subplots(2,1)
+    plot_acf(gold_diff["Close_diff"],lags=40,ax=ax1)
+    ax1.set(title='ACF')
+    plot_pacf(gold_diff["Close_diff"],lags=40,ax=ax2)
+    ax2.set(title='PACF')
+    plt.show()
 
 
 
