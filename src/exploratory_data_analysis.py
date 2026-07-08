@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from data_collection import *
+from src.data_collection import *
 import numpy as np
 from scipy.stats import norm,iqr
 from scipy import stats

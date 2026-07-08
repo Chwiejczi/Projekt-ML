@@ -1,7 +1,7 @@
 
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
-from feature_engineering import prepare_main_df
+from src.feature_engineering import prepare_main_df
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error,r2_score
 import math

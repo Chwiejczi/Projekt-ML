@@ -1,4 +1,4 @@
-from data_collection import *
+from src.data_collection import *
 import datetime as dt
 
 

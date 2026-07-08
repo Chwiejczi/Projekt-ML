@@ -1,5 +1,5 @@
 from statsmodels.tsa.arima.model import ARIMA
-from data_collection import *
+from src.data_collection import *
 from statsmodels.tsa.stattools import adfuller
 from sklearn.metrics import mean_squared_error,r2_score
 import math
