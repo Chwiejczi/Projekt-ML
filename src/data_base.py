@@ -20,6 +20,19 @@ def load_predictions():
     cursor.execute("""Select * from gold_predictions ORDER BY Predicted_Date""")
     return cursor.fetchall()
 
+def clear_gold_prices():
+    cursor.execute("""
+        Delete from gold_prices
+    """)
+    conn.commit()
+
+def date_in_database(date):
+    cursor.execute("""
+        select count(*) from gold_prices where Stock_Date=?
+    """,date)
+
+    count=cursor.fetchone()[0]#it return a tuple ex. (1,) , we need only 1st elem
+    return bool(count)
 
 DRIVER_NAME="SQL Server"
 SERVER_NAME="DESKTOP-G28JJ96\SQLEXPRESS"

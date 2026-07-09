@@ -16,7 +16,8 @@ statsmodels
 #Project Status: 
 In progress 
 
-
+##database
+In SQL Server Management Studio execute file database/init.sql , then database will be ready to use
 
 #conclusions  
 8.07.2026
