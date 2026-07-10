@@ -12,6 +12,12 @@ def ts_arima_split(df, size):
     train=df.iloc[:training_size]
     test=df.iloc[training_size:]
     return train,test
+
+def ARIMA_pred(history, order_params):
+    model = ARIMA(history, order=order_params)
+    fitted_model = model.fit()
+    pred=fitted_model.forecast(steps=1)
+    return pred
 if __name__ == "__main__":
     df=data_prep("GC=F","5y")
     #df=df["Close"]
