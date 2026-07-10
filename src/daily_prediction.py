@@ -3,13 +3,14 @@ from src.data_base import *
 from train_ARIMA import *
 from datetime import datetime,timedelta
 def run_daily_pipeline():
-    df=data_prep("GC=F","5y")
-    latest=df.iloc[-1]
-    date=latest["Date"]
+    #df=data_prep("GC=F","5y")
+    #latest=df.iloc[-1]
+    data=get_latest_value_from_API()
+    date=data['date']
     if date_in_database(date):
         pass
     else:
-        insert_gold_price(date,latest["Close"])
+        insert_gold_price(date,float(data["price"]))
 
 if __name__=="__main__":
     clear_gold_preds()

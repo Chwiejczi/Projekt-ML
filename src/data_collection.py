@@ -9,6 +9,18 @@ def get_response():
     url = f'https://www.alphavantage.co/query?function=GOLD_SILVER_HISTORY&symbol=GOLD&interval=daily&apikey={api_key}'
     r = requests.get(url)
     return r
+
+def get_latest_value_from_API():
+    response=get_response()
+    if response.status_code == 200:
+        data=response.json()
+        data=data['data']
+        latest=data[0]
+        return latest
+    else:
+        raise Exception(f"API error: {response.status_code}")
+
+
 def data_prep(ticker,prd):
     gold = yf.download(tickers=ticker, period=prd)
     gold.columns = gold.columns.droplevel(1)
@@ -70,6 +82,10 @@ if __name__ == "__main__":
     #print("dataframe merged")
     #print(df)
 
+
+    #checking function
+    print('##############################################################################')
+    print(get_latest_value_from_API())
 
 
 

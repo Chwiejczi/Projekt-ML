@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5c34b8b3-a2bf-47ac-8ff0-19f166f9a783" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/train_ARIMA.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train_ARIMA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daily_prediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/daily_prediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_collection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,27 +36,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.daily_prediction.executor": "Run",
-    "Python.data_base.executor": "Run",
-    "Python.data_collection.executor": "Run",
-    "Python.exploratory_data_analysis.executor": "Run",
-    "Python.feature_engineering.executor": "Run",
-    "Python.train.executor": "Run",
-    "Python.train_ARIMA.executor": "Run",
-    "Python.train_ML.executor": "Run",
-    "Python.update_db.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.daily_prediction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_base.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_collection.executor&quot;: &quot;Run&quot;,
+    &quot;Python.exploratory_data_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.feature_engineering.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train_ARIMA.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train_ML.executor&quot;: &quot;Run&quot;,
+    &quot;Python.update_db.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
