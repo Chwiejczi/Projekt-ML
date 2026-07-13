@@ -4,7 +4,7 @@ Machine learning project focused on predicting gold price
 #Technologies:  
 Python 
 Docker 
-FastAPI(planned)
+FastAPI
 requests
 pandas
 pytest
