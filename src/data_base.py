@@ -10,6 +10,10 @@ def load_gold_prices():
     cursor.execute("""Select Price from gold_prices ORDER BY Stock_Date""")
     return cursor.fetchall()
 
+def load_all_gold():
+    cursor.execute("""Select * from gold_prices ORDER BY Stock_Date DESC""")
+    return cursor.fetchall()
+
 def insert_predictions(date,pred_price):
     cursor.execute("""Insert into gold_predictions(Prediction_Date,Predicted_Price, Name_Model)  
                    values(?,?,?)   
@@ -48,6 +52,10 @@ def date_in_gold_pred(date):
 
     count=cursor.fetchone()[0]#it return a tuple ex. (1,) , we need only 1st elem
     return bool(count)
+
+def last_pred():
+    cursor.execute("""Select TOP 1 * from gold_predictions ORDER BY Prediction_Date DESC""")
+    return cursor.fetchall()
 
 DRIVER_NAME="SQL Server"
 SERVER_NAME="DESKTOP-G28JJ96\SQLEXPRESS"

@@ -12,9 +12,11 @@ yfinance
 matplotlib  
 numpy
 scipy
-statsmodels
-#Project Status: 
-In progress 
+statsmodels 
+scikit-learn
+pyodbc
+fastapi
+uvicorn
 
 ##database
 In SQL Server Management Studio execute file database/init.sql , then database will be ready to use
